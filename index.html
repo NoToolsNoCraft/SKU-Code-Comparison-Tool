@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Social Sharing Meta Tags -->
+    <meta property="og:title" content="SKU Comparison Tool - Quickly Compare SKU Lists" />
+    <meta property="og:description" content="Paste two SKU lists and instantly find out which products are missing. Perfect for eCommerce, inventory checks, and retail audits." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/" /> <!-- Update this URL -->
+    <meta property="og:image" content="https://yourdomain.com/preview-image.png" /> <!-- Optional: link to your preview image -->
+    
+  <title>SKU Code Comparison Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f6f8fa;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    header button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: white;
+      color: #007acc;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    header button:hover {
+      background-color: #e6f2fb;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 250px;
+      padding: 10px;
+      font-family: monospace;
+      box-sizing: border-box;
+    }
+
+    button.compare-btn {
+      padding: 10px 20px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 20px auto;
+    }
+
+    button.compare-btn:hover {
+      background-color: #005fa3;
+    }
+
+    .result {
+      background-color: #fff;
+      border-left: 5px solid #007acc;
+      padding: 15px;
+    }
+
+    .multi-column {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .multi-column ul {
+      list-style: disc inside;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    @media (max-width: 600px) {
+      .multi-column ul {
+        min-width: 100%;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background-color: #eaeaea;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Landing Header -->
+  <header>
+    <h1>SKU Code Comparison Tool</h1>
+    <p>Quickly check if your SKU codes from one list exist in another. Simple, fast, and free.</p>
+    <button onclick="document.getElementById('app').scrollIntoView({ behavior: 'smooth' })">
+      Use the App
+    </button>
+
+    
+  </header>
+
+  
+
+  <!-- Main App Section -->
+  <main id="app">
+    
+    <h2>🔍 Compare Your SKUs</h2>
+
+<div style="max-width: 800px; margin: 0 auto 30px auto; font-size: 16px; line-height: 1.6;">
+  <p>This tool helps you quickly compare two lists of <strong>SKU codes</strong> and identify which items from one list (e.g. a product report, inventory list, or export from a system) are <strong>missing</strong> in another.</p>
+
+  <p>It's especially useful for:</p>
+  <ul style="margin-left: 20px;">
+    <li>Retailers verifying stock against supplier data</li>
+    <li>eCommerce managers matching catalog data from different platforms</li>
+    <li>Warehouse or logistics teams checking inventory sync</li>
+    <li>Anyone comparing product codes from Excel tables or CSV files</li>
+  </ul>
+
+  <p><strong>How to use:</strong></p>
+  <ol style="margin-left: 20px;">
+    <li>Copy the list of SKU codes from <strong>Table 1</strong> (reference list) and paste it on the left.</li>
+    <li>Copy the list from <strong>Table 2</strong> (the list you want to compare against) and paste it on the right.</li>
+    <li>Click <strong>Compare</strong> and instantly see which SKUs from Table 1 are missing in Table 2.</li>
+  </ol>
+
+  <p>The result will show missing codes in neat columns, making it easier to read—even with long lists. All comparisons are done right in your browser, with no data uploaded anywhere.</p>
+</div>
+<hr style="border: none; border-top: 2px dashed #ccc; margin: 40px 0;" />
+
+    <div class="container">
+      <div class="column">
+        <label for="table1">Table 1 (Reference SKUs)</label>
+        <textarea id="table1" placeholder="Paste SKUs from Table 1 here..."></textarea>
+      </div>
+      <div class="column">
+        <label for="table2">Table 2 (Comparison SKUs)</label>
+        <textarea id="table2" placeholder="Paste SKUs from Table 2 here..."></textarea>
+      </div>
+    </div>
+
+    <button class="compare-btn" onclick="compareSKUs()">Compare</button>
+
+    <div id="result" class="result"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    App made in 2025 by <a href="https://www.linkedin.com/in/petar-skrbic/" target="_blank">Petar Škrbić</a>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function compareSKUs() {
+      const table1Input = document.getElementById('table1').value.trim();
+      const table2Input = document.getElementById('table2').value.trim();
+
+      const table1 = table1Input.split(/\r?\n/).map(s => s.trim()).filter(s => s !== "");
+      const table2Set = new Set(table2Input.split(/\r?\n/).map(s => s.trim()));
+
+      const missingSKUs = table1.filter(sku => !table2Set.has(sku));
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      if (missingSKUs.length === 0) {
+        resultDiv.innerHTML = `<strong>✅ All SKUs from Table 1 are present in Table 2.</strong>`;
+        return;
+      }
+
+      const message = `<strong>❌ The following ${missingSKUs.length} SKU(s) from Table 1 are missing in Table 2:</strong>`;
+      const columnsContainer = document.createElement('div');
+      columnsContainer.className = 'multi-column';
+
+      for (let i = 0; i < missingSKUs.length; i += 15) {
+        const chunk = missingSKUs.slice(i, i + 15);
+        const ul = document.createElement('ul');
+        chunk.forEach(sku => {
+          const li = document.createElement('li');
+          li.textContent = sku;
+          ul.appendChild(li);
+        });
+        columnsContainer.appendChild(ul);
+      }
+
+      resultDiv.innerHTML = message;
+      resultDiv.appendChild(columnsContainer);
+    }
+  </script>
+</body>
+</html>
